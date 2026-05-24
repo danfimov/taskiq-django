@@ -1,0 +1,74 @@
+{% extends "admin/change_list.html" %}
+{% load i18n admin_urls static %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+  <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+  &rsaquo;
+  <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+  &rsaquo;
+  {{ opts.verbose_name_plural|capfirst }}
+</div>
+{% endblock %}
+
+{% block object-tools %}
+<ul class="object-tools">
+  <li>
+    <a href="#" class="addlink">Add taskiq schedule</a>
+  </li>
+</ul>
+{% endblock %}
+
+{% block search %}{% endblock %}
+{% block filters %}{% endblock %}
+{% block pagination %}{% endblock %}
+{% block date_hierarchy %}{% endblock %}
+
+{% block result_list %}
+<div class="results">
+  <table id="result_list">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="text">
+            <span>Task name</span>
+          </div>
+        </th>
+        <th scope="col">
+          <div class="text">
+            <span>Schedule</span>
+          </div>
+        </th>
+        <th scope="col">
+          <div class="text">
+            <span>Created at</span>
+          </div>
+        </th>
+        <th scope="col">
+          <div class="text">
+            <span>Updated at</span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        <th class="field-task_name">
+          <a href="{% url 'admin:taskiq_django_taskiqschedule_change' row.id %}">
+            {{ row.task_name }}
+          </a>
+        </th>
+        <td>{{ row.schedule }}</td>
+        <td>{{ row.created_at }}</td>
+        <td>{{ row.updated_at }}</td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No taskiq schedules available.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
