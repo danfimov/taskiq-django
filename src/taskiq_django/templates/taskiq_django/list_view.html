@@ -14,7 +14,7 @@
 {% block object-tools %}
 <ul class="object-tools">
   <li>
-    <a href="#" class="addlink">Add taskiq schedule</a>
+    <a href="{% url 'admin:taskiq_django_taskiqtaskschedule_add' %}" class="addlink">Add taskiq schedule</a>
   </li>
 </ul>
 {% endblock %}
@@ -49,23 +49,32 @@
             <span>Updated at</span>
           </div>
         </th>
+        <th scope="col">
+          <div class="text">
+            <span></span>
+          </div>
+        </th>
       </tr>
     </thead>
     <tbody>
       {% for row in rows %}
       <tr>
         <th class="field-task_name">
-          <a href="{% url 'admin:taskiq_django_taskiqschedule_change' row.id %}">
+          <a href="{% url 'admin:taskiq_django_taskiqtaskschedule_change' row.id %}">
             {{ row.task_name }}
           </a>
         </th>
         <td>{{ row.schedule }}</td>
         <td>{{ row.created_at }}</td>
         <td>{{ row.updated_at }}</td>
+        <td>
+          <a href="{% url 'admin:taskiq_django_taskiqtaskschedule_delete' row.id %}"
+             class="deletelink">{% translate 'Delete' %}</a>
+        </td>
       </tr>
       {% empty %}
       <tr>
-        <td colspan="4">No taskiq schedules available.</td>
+        <td colspan="5">No taskiq schedules available.</td>
       </tr>
       {% endfor %}
     </tbody>
