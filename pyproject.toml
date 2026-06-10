@@ -1,0 +1,25 @@
+[project]
+name = "taskiq-django"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=6.0.5",
+    "taskiq>=0.12.4",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.14",
+    "ty>=0.0.39",
+]
+examples = [
+    "granian[reload]>=2.7.5",
+    "starlette>=1.2.1",
+    "taskiq-postgres[asyncpg]>=0.8.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.11,<0.12"]
+build-backend = "uv_build"
