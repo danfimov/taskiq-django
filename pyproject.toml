@@ -1,9 +1,9 @@
 [project]
 name = "taskiq-django"
-version = "0.1.0"
+version = "0.0.1"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "django>=6.0.5",
     "taskiq>=0.12.4",
@@ -12,8 +12,13 @@ dependencies = [
 [dependency-groups]
 dev = [
     "prek>=0.4.4",
-    "ruff>=0.15.14",
     "ty>=0.0.39",
+    {include-group = "test"},
+    {include-group = "lint"},
+    {include-group = "examples"},
+]
+lint = [
+    "ruff>=0.15.14",
     "zizmor>=1.25.2",
 ]
 examples = [
@@ -21,10 +26,22 @@ examples = [
     "starlette>=1.2.1",
     "taskiq-postgres[asyncpg]>=0.8.0",
 ]
+test = [
+    "pytest>=9.1.0",
+    "pytest-asyncio>=1.4.0",
+    "pytest-django>=4.12.0",
+    "dirty-equals>=0.11",
+]
 
 [build-system]
 requires = ["uv_build>=0.11,<0.12"]
 build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 120
@@ -40,3 +57,4 @@ select = [
 
 [tool.ruff.lint.per-file-ignores]
 "examples/example_app/asgi.py" = ["E402"]
+"tests/**" = ["S101"]

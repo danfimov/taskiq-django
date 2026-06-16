@@ -36,6 +36,7 @@ repos:
             '--exclude-lines', 'look_in_vault',
             '--exclude-lines', 'taskiq_django',
             '--exclude-lines', 'postgresql://postgres:postgres@localhost:5432/postgres',
+            '--exclude-lines', 'django-insecure-test-key'
         ]
 
 -   repo: local
