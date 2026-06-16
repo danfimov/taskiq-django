@@ -14,4 +14,4 @@ ruff:
 	@uv run ruff check .
 
 ty:
-	@uv run ty check .
+	@uv run ty check src

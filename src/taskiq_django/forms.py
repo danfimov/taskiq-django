@@ -68,7 +68,7 @@ class TaskiqTaskScheduleForm(forms.Form):
     )
 
     def clean(self):
-        cleaned = super().clean()
+        cleaned = super().clean() or {}
         if not any((cleaned.get("cron"), cleaned.get("time"), cleaned.get("interval"))):
             raise forms.ValidationError("One of cron, time or interval must be set.")
         return cleaned

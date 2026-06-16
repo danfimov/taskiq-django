@@ -12,14 +12,18 @@ dependencies = [
 [dependency-groups]
 dev = [
     "prek>=0.4.4",
-    "ty>=0.0.39",
     {include-group = "test"},
     {include-group = "lint"},
+    {include-group = "types"},
     {include-group = "examples"},
 ]
 lint = [
     "ruff>=0.15.14",
     "zizmor>=1.25.2",
+]
+types = [
+    "django-stubs>=6.0.5",
+    "ty>=0.0.39",
 ]
 examples = [
     "granian[reload]>=2.7.5",
