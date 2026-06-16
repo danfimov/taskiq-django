@@ -3,7 +3,7 @@ from django.contrib import admin, messages
 from django.contrib.admin import helpers
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
-from django.urls import URLPattern, URLResolver, path, reverse
+from django.urls import URLPattern, path, reverse
 
 from taskiq_django.forms import TaskiqTaskScheduleForm
 from taskiq_django.models import TaskiqTaskSchedule
@@ -26,7 +26,7 @@ def _get_source(request) -> DjangoScheduleSource:
 
 @admin.register(TaskiqTaskSchedule)
 class TaskiqTaskScheduleAdmin(admin.ModelAdmin):
-    def get_urls(self) -> list[URLResolver | URLPattern]:
+    def get_urls(self) -> list[URLPattern]:
         urls = super().get_urls()
         wrap = self.admin_site.admin_view
         custom_urls = [
