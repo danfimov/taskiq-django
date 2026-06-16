@@ -11,8 +11,10 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "prek>=0.4.4",
     "ruff>=0.15.14",
     "ty>=0.0.39",
+    "zizmor>=1.25.2",
 ]
 examples = [
     "granian[reload]>=2.7.5",
@@ -23,3 +25,18 @@ examples = [
 [build-system]
 requires = ["uv_build>=0.11,<0.12"]
 build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "I",
+    "E",
+    "W",
+    "S",
+    "F",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"examples/example_app/asgi.py" = ["E402"]

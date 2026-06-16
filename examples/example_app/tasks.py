@@ -1,6 +1,8 @@
-from taskiq import async_shared_broker
 import asyncio
+
 from django.contrib.auth.models import User
+from taskiq import async_shared_broker
+
 
 @async_shared_broker.task(
     "solve_all_problems",
