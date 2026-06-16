@@ -26,7 +26,7 @@ repos:
     rev: v1.45.1
     hooks:
       - id: typos
-        exclude: taskiq_dashboard/api/static/
+        exclude: tests/test_schedule_source.py
 
 -   repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0

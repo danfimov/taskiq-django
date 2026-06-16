@@ -40,13 +40,13 @@ class TestAddSchedule:
             kwargs={"key": "value"},
             cron="0 * * * *",
         )
-        assert await TaskiqTaskSchedule.objects.account() == 1
+        assert await TaskiqTaskSchedule.objects.acount() == 1
 
     async def test_updates_existing_row(self, source: DjangoScheduleSource):
         await source.add_schedule(make_task())
         await source.add_schedule(make_task(task_name="app:renamed", cron="*/5 * * * *"))
 
-        assert await TaskiqTaskSchedule.objects.account() == 1
+        assert await TaskiqTaskSchedule.objects.acount() == 1
         row = await TaskiqTaskSchedule.objects.aget(schedule_id="sched-1")
         assert row.task_name == "app:renamed"
         assert row.cron == "*/5 * * * *"
@@ -136,7 +136,7 @@ class TestDeleteSchedule:
 
         await source.delete_schedule("does-not-exist")
 
-        assert await TaskiqTaskSchedule.objects.account() == 1
+        assert await TaskiqTaskSchedule.objects.acount() == 1
 
 
 @pytest.mark.django_db(transaction=True)
@@ -148,14 +148,14 @@ class TestPostSend:
         task = make_task(cron=None, time=run_at)
         await source.post_send(task)
 
-        assert await TaskiqTaskSchedule.objects.account() == 0
+        assert await TaskiqTaskSchedule.objects.acount() == 0
 
     async def test_recurring_task_is_kept(self, source: DjangoScheduleSource):
         await source.add_schedule(make_task())  # cron-based, time is None
 
         await source.post_send(make_task())
 
-        assert await TaskiqTaskSchedule.objects.account() == 1
+        assert await TaskiqTaskSchedule.objects.acount() == 1
 
 
 @pytest.mark.django_db(transaction=True)
