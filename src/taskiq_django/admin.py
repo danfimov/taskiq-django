@@ -3,12 +3,11 @@ from django.contrib import admin, messages
 from django.contrib.admin import helpers
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
-from django.urls import path, reverse, URLPattern, URLResolver
+from django.urls import URLPattern, URLResolver, path, reverse
 
 from taskiq_django.forms import TaskiqTaskScheduleForm
 from taskiq_django.models import TaskiqTaskSchedule
 from taskiq_django.schedule_source import DjangoScheduleSource
-
 
 FIELDSETS = [
     (None, {"fields": ["schedule_id", "task_name"]}),

@@ -9,3 +9,9 @@ run_scheduler:
 
 run_infra:
 	docker compose up -d postgres
+
+ruff:
+	@uv run ruff check .
+
+ty:
+	@uv run ty check .
